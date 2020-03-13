@@ -1,0 +1,1 @@
+gcloud app deploy --project=exocortex-271008 --quiet
