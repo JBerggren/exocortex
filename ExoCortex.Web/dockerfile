@@ -16,4 +16,5 @@ COPY --from=build-env /app/out/ .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://*:8080
 ENV ASPNETCORE_ENVIRONMENT=production
+#ENV GOOGLE_APPLICATION_CREDENTIALS=Exocortex-2f37712dc639.json
 ENTRYPOINT ["dotnet", "ExoCortex.Web.dll"]
