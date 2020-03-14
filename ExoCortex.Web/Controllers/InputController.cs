@@ -24,7 +24,7 @@ namespace ExoCortex.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Store([FromBody] JsonElement param){
+        public async Task<IActionResult> Store([FromBody] JsonElement param){
             try{
                 var type = param.GetProperty("type").GetString();
                 var time = DateTime.Now;
@@ -37,9 +37,9 @@ namespace ExoCortex.Web.Controllers
                     data.Add(dataProperties.Current.Name,dataProperties.Current.Value.GetRawText());
                 }
                 var item = new InputItem(type,data,time);
-                return await InputManager.Save(item);
+                return Content(await InputManager.Save(item));
             }catch(System.Exception ex){
-                return ex.ToString();
+                return Problem(ex.ToString());
             }
         }
 
