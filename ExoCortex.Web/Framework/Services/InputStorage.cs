@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using ExoCortex.Web.Models;
 using Google.Cloud.Firestore;
 
-namespace ExoCortex.Web.Services
+namespace ExoCortex.Web.Framework.Services
 {
     public interface IInputStorage
     {

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Google.Cloud.Firestore;
 using Microsoft.Extensions.Configuration;
 
-namespace ExoCortex.Web.Services{
+namespace ExoCortex.Web.Framework.Services{
     public interface IFirestoreFactory
     {
         Task<FirestoreDb> Get();

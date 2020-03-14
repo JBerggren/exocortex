@@ -25,7 +25,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 
 
-namespace ExoCortex.Web.Framework
+namespace ExoCortex.Web.Framework.DynamicCompile
 {
     internal class SimpleUnloadableAssemblyLoadContext : AssemblyLoadContext
     {

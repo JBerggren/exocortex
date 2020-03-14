@@ -28,7 +28,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 
-namespace ExoCortex.Web.Framework
+namespace ExoCortex.Web.Framework.DynamicCompile
 {
     internal class Compiler
     {

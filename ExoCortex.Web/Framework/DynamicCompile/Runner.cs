@@ -25,7 +25,7 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 
-namespace ExoCortex.Web.Framework
+namespace ExoCortex.Web.Framework.DynamicCompile
 {
     internal class Runner
     {

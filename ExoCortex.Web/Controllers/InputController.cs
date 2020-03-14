@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ExoCortex.Web.Models;
-using ExoCortex.Web.Services;
+using ExoCortex.Web.Framework.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExoCortex.Web.Controllers

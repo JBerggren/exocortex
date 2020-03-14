@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
-using ExoCortex.Web.Models;
-using ExoCortex.Web.Services;
+using ExoCortex.Web.Framework.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
@@ -15,20 +13,40 @@ namespace ExoCortex.Web.Controllers
     public class ExecuteController : ControllerBase
     {
         public IInputStorage InputManager { get; }
-        public ExecuteController(IInputStorage inputManager)
+        public IWebHostEnvironment WebHostEnvironment { get; }
+
+        public ExecuteController(IInputStorage inputManager, IWebHostEnvironment  webHostEnvironment)
         {
             InputManager = inputManager;
+            WebHostEnvironment = webHostEnvironment;
         }
 
 
 
-        [HttpGet("/")]
-        public async Task<object> Execute()
-        {
-            var script = @"
-            
-            ";
-            return await CSharpScript.EvaluateAsync("Directory.GetCurrentDirectory()", ScriptOptions.Default.WithImports("System.IO"));
-        }
+        // [HttpGet("")]
+        // public async Task<object> Execute()
+        // {
+        //     try
+        //     {
+        //         // if(string.IsNullOrEmpty("agent")){
+        //         //     return BadRequest("No agent specified");
+        //         // }
+        //         return WebHostEnvironment.WebRootPath;
+        //        /* var fileContent = System.IO.File.ReadAllText("")
+        //         var api = new ScriptAPI() { InputStorage = InputManager };
+        //         var value = await CSharpScript.EvaluateAsync(script, globals: api);
+        //         return value;*/
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return "Could not execute agent:" + ex.ToString();
+        //     }
+
+        // }
+    }
+
+    public class ScriptAPI
+    {
+        public IInputStorage InputStorage;
     }
 }
