@@ -43,7 +43,7 @@ namespace ExoCortex.Web.Controllers
             }
         }
 
-        [HttpGet("/")]
+        [HttpGet]
         public async Task<InputQueryResult> Get(string type = "", int limit =1){
             return await InputManager.GetLatest(type,limit);
         }

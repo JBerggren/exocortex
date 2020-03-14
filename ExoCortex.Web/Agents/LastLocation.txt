@@ -1,3 +1,2 @@
-/*var last = (await InputStorage.GetLatest(""gps"",1)).Items[0];
-return last.Data[""lat""];*/
-return "Hello world";
+var last = (await InputStorage.GetLatest("gps",1)).Items[0];
+ReturnValue.Url("https://www.google.com/maps/place/" + last.Data["lat"]  + "," + last.Data["lng"]);

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using System.Threading.Tasks;
+using ExoCortex.Web.Agents.Interface;
 
 namespace ExoCortex.Web.Controllers
 {
@@ -23,28 +24,32 @@ namespace ExoCortex.Web.Controllers
 
 
         [HttpGet]
-        public async Task<string> ExecuteAgent(string agent)
+        public async Task<IActionResult> ExecuteAgent(string agent)
         {
             try
             {
-                if(string.IsNullOrEmpty(agent)){
-                    return "No agent specified";
+                if (string.IsNullOrEmpty(agent))
+                {
+                    return BadRequest("No agent specified");
                 }
-                var scriptContent =  System.IO.File.ReadAllText(Path.Combine(WebHostEnvironment.ContentRootPath,"Agents/" + agent + ".txt"));
-                var api = new ScriptAPI() { InputStorage = InputManager };
+                var scriptContent = System.IO.File.ReadAllText(Path.Combine(WebHostEnvironment.ContentRootPath, "Agents/" + agent + ".txt"));
+                var api = new ScriptAPI(InputManager);
                 var value = await CSharpScript.EvaluateAsync<string>(scriptContent, globals: api);
-                return value;
+                switch (api.ReturnValue.ValueType)
+                {
+                    case ScriptReturnValue.ValueTypeEnum.Value:
+                        return Content(api.ReturnValue.Value);
+                    case ScriptReturnValue.ValueTypeEnum.Url:
+                        return Redirect(api.ReturnValue.Value);
+                    default:
+                        return Content(api.ReturnValue.Value);
+                }
             }
             catch (Exception ex)
             {
-                return "Could not execute agent:" + ex.ToString();
+                return Problem("Could not execute agent:" + ex.ToString());
             }
 
         }
-    }
-
-    public class ScriptAPI
-    {
-        public IInputStorage InputStorage;
     }
 }
