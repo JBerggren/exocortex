@@ -12,11 +12,11 @@ namespace ExoCortex.Web.Controllers
     [Route("[controller]")]
     public class InputController : ControllerBase
     {
-        public InputController(IInputManager inputManager){
+        public InputController(IInputStorage inputManager){
             InputManager = inputManager;
         }
 
-        public IInputManager InputManager { get; }
+        public IInputStorage InputManager { get; }
 
         [HttpGet("/count")]
         public async Task<int> Count(){

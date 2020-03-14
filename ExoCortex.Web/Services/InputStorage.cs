@@ -5,17 +5,17 @@ using Google.Cloud.Firestore;
 
 namespace ExoCortex.Web.Services
 {
-    public interface IInputManager
+    public interface IInputStorage
     {
         Task<string> Save(InputItem item);
         Task<int> Count();
         Task<InputQueryResult> GetLatest(string type,int limit);
     }
 
-    public class InputManager : IInputManager
+    public class InputStorage : IInputStorage
     {
         private IFirestoreFactory Db;
-        public InputManager(IFirestoreFactory factory)
+        public InputStorage(IFirestoreFactory factory)
         {
             Db = factory;
         }

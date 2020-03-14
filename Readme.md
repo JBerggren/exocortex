@@ -3,7 +3,8 @@
 Work in progress
 
 ## Todo
-
+Creating agent that shows latest recorded position and displays on google maps with link like
+https://www.google.com/maps/place/59.2454574,17.5790637
 
 
 

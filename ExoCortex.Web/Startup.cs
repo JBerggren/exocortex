@@ -27,7 +27,7 @@ namespace ExoCortex.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IFirestoreFactory, FirestoreFactory>();
-            services.AddSingleton<IInputManager, InputManager>();
+            services.AddSingleton<IInputStorage, InputStorage>();
             services.AddControllers();
         }
 
