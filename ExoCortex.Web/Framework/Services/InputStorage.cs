@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ExoCortex.Web.Models;
+using ExoCortex.Web.Models.Response;
 using Google.Cloud.Firestore;
 
 namespace ExoCortex.Web.Framework.Services

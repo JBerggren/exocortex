@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ExoCortex.Web.Models;
 using ExoCortex.Web.Framework.Services;
 using Microsoft.AspNetCore.Mvc;
+using ExoCortex.Web.Models.Response;
 
 namespace ExoCortex.Web.Controllers
 {

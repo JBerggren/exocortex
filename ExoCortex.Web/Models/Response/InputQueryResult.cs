@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ExoCortex.Web.Models{
+namespace ExoCortex.Web.Models.Response{
     public class InputQueryResult{
         public IList<InputItem> Items {get;set;}
 

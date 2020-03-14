@@ -32,7 +32,11 @@ namespace ExoCortex.Web.Controllers
                 {
                     return BadRequest("No agent specified");
                 }
-                var scriptContent = System.IO.File.ReadAllText(Path.Combine(WebHostEnvironment.ContentRootPath, "Agents/" + agent + ".txt"));
+                var agentPath  = Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "Agents/" + agent + ".txt"));
+                if(!agentPath.StartsWith(WebHostEnvironment.ContentRootPath)){
+                    return Problem("Security issue! Path outside of web root! Agentname:"+ agent);
+                }
+                var scriptContent = System.IO.File.ReadAllText(agentPath);
                 var api = new ScriptAPI(InputManager);
                 var value = await CSharpScript.EvaluateAsync<string>(scriptContent, globals: api);
                 switch (api.ReturnValue.ValueType)
