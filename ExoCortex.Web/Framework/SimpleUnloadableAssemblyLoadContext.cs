@@ -25,7 +25,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 
 
-namespace ExoCortex.Web.Framewor
+namespace ExoCortex.Web.Framework
 {
     internal class SimpleUnloadableAssemblyLoadContext : AssemblyLoadContext
     {

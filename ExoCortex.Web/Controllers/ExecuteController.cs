@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ExoCortex.Web.Models;
 using ExoCortex.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace ExoCortex.Web.Controllers
 {
@@ -20,10 +22,13 @@ namespace ExoCortex.Web.Controllers
 
 
 
-        [HttpGet("/count")]
-        public async Task<int> Count()
+        [HttpGet("/")]
+        public async Task<object> Execute()
         {
-            return await InputManager.Count();
+            var script = @"
+            
+            ";
+            return await CSharpScript.EvaluateAsync("Directory.GetCurrentDirectory()", ScriptOptions.Default.WithImports("System.IO"));
         }
     }
 }

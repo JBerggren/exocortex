@@ -45,7 +45,7 @@ namespace ExoCortex.Web.Framework
                     var errors = new List<string>();
                     foreach (var diagnostic in failures)
                     {
-                        errors.Add(string.Format("{0}: {1}", diagnostic.Id, diagnostic.GetMessage());
+                        errors.Add(string.Format("{0}: {1}", diagnostic.Id, diagnostic.GetMessage()));
                     }
                     throw new Exception("Error compiling:" + string.Join(".", errors.ToArray()));
                 }
@@ -66,7 +66,7 @@ namespace ExoCortex.Web.Framework
                 MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(System.Runtime.AssemblyTargetedPatchBandAttribute).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo).Assembly.Location),
-                 MetadataReference.CreateFromFile(typeof(Startup).Assembly.Location), //Add ref to this assembly
+                 MetadataReference.CreateFromFile(typeof(Startup).Assembly.Location) //Add ref to this assembly
             };
 
             return CSharpCompilation.Create("Hello.dll",
