@@ -26,7 +26,7 @@ namespace ExoCortex.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFirestoreFactory,FirestoreFactory>();
+            services.AddSingleton<IFirestoreFactory, FirestoreFactory>();
             services.AddSingleton<IInputManager, InputManager>();
             services.AddControllers();
         }
@@ -38,9 +38,10 @@ namespace ExoCortex.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
-
+            if (!env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
             app.UseRouting();
 
             app.UseAuthorization();

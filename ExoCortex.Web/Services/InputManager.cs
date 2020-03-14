@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ExoCortex.Web.Models;
 using Google.Cloud.Firestore;
@@ -8,6 +9,7 @@ namespace ExoCortex.Web.Services
     {
         Task<string> Save(InputItem item);
         Task<int> Count();
+        Task<InputQueryResult> GetLatest(string type,int limit);
     }
 
     public class InputManager : IInputManager
@@ -24,6 +26,23 @@ namespace ExoCortex.Web.Services
             return (await collection.GetSnapshotAsync()).Count;
         }
 
+        public async Task<InputQueryResult> GetLatest(string type, int limit)
+        {
+            var collection = await GetCollection();
+            var query = collection.OrderByDescending("Time").Limit(limit);
+            if (!string.IsNullOrEmpty(type))
+            {
+                query = query.WhereEqualTo("Type", type);
+            }
+            var results = await query.GetSnapshotAsync();
+            var items = new List<InputItem>();
+
+            foreach (var item in results)
+            {
+                items.Add(item.ConvertTo<InputItem>());
+            }
+            return new InputQueryResult(items);
+        }
 
         public async Task<string> Save(InputItem item)
         {

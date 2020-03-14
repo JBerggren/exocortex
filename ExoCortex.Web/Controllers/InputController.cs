@@ -18,7 +18,7 @@ namespace ExoCortex.Web.Controllers
 
         public IInputManager InputManager { get; }
 
-        [HttpGet]
+        [HttpGet("/count")]
         public async Task<int> Count(){
             return await InputManager.Count();
         }
@@ -41,6 +41,11 @@ namespace ExoCortex.Web.Controllers
             }catch(System.Exception ex){
                 return ex.ToString();
             }
+        }
+
+        [HttpGet("/")]
+        public async Task<InputQueryResult> Get(string type = "", int limit =1){
+            return await InputManager.GetLatest(type,limit);
         }
         
     }
