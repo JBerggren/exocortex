@@ -2,10 +2,12 @@ using System.Threading.Tasks;
 using ExoCortex.Web.Models;
 using Google.Cloud.Firestore;
 
-namespace ExoCortex.Web.Services{
+namespace ExoCortex.Web.Services
+{
     public interface IInputManager
     {
         Task<string> Save(InputItem item);
+        Task<int> Count();
     }
 
     public class InputManager : IInputManager
@@ -14,6 +16,12 @@ namespace ExoCortex.Web.Services{
         public InputManager(IFirestoreFactory factory)
         {
             Db = factory;
+        }
+
+        public async Task<int> Count()
+        {
+            var collection = await GetCollection();
+            return (await collection.GetSnapshotAsync()).Count;
         }
 
 

@@ -18,6 +18,11 @@ namespace ExoCortex.Web.Controllers
 
         public IInputManager InputManager { get; }
 
+        [HttpGet]
+        public async Task<int> Count(){
+            return await InputManager.Count();
+        }
+
         [HttpPost]
         public async Task<string> Store([FromBody] JsonElement param){
             try{
