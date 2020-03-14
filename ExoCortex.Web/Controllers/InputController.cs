@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ExoCortex.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("input")]
     public class InputController : ControllerBase
     {
         public InputController(IInputStorage inputManager){
@@ -18,7 +18,7 @@ namespace ExoCortex.Web.Controllers
 
         public IInputStorage InputManager { get; }
 
-        [HttpGet("/count")]
+        [HttpGet("count")]
         public async Task<int> Count(){
             return await InputManager.Count();
         }
