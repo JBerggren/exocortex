@@ -10,7 +10,6 @@ using ExoCortex.Web.Agents.Interface;
 namespace ExoCortex.Web.Controllers
 {
     [ApiController]
-    [Route("execute")]
     public class ExecuteController : ControllerBase
     {
         public IInputStorage InputManager { get; }
@@ -22,8 +21,7 @@ namespace ExoCortex.Web.Controllers
             WebHostEnvironment = webHostEnvironment;
         }
 
-
-        [HttpGet]
+        [HttpGet("agent/{agent}/execute")]
         public async Task<IActionResult> ExecuteAgent(string agent)
         {
             try

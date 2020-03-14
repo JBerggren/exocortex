@@ -2,6 +2,8 @@
 
 This project is for storing of data and then for creating agents that can react to that data (think IFTTT).
 
+## Input 
+
 ### POST /input
 Body: { "type": "{typeOfData}", "data":{{DataObject}}}  
 Returns id of record if successful. Or 500 server error if something went worng
@@ -29,9 +31,27 @@ An example of this is
 
 ### Get /input/count
 Simply returns the nr of stored records
-  
-### Get /execute?agent={agentName}
-Executes a agent script. Looks for the file {agentName}.txt in the  **Agents** Folder and executes it. 
+
+## Agents
+Agents are stored as  {agentName}.txt in the  **Agents** Folder.
+
+### GET /agent
+List of all agents. 
+```
+{"agents":["LastLocation"]}
+```
+
+### GET /agent/{agent}
+Returns code for agent *agent*.
+
+### POST /agent/{agent}
+Update code for agent *agent*
+
+### DELETE /agent/{agent}
+Delete agent *agent*
+
+### Get /agent/{agent}/execute
+Executes a agent script and returns whatever the script returns
 
 ## Todo
-Be able to create and edit existing agent scripts from a web interface.
+Create CRUD web interface for agents.

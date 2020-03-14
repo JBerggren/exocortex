@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using ExoCortex.Web.Models.Request;
+using ExoCortex.Web.Models.Response;
+using System.Linq;
 
 namespace ExoCortex.Web.Controllers
 {
@@ -18,6 +20,21 @@ namespace ExoCortex.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult GetAgents()
+        {
+            try
+            {
+                var folder = Path.GetFullPath(Path.Combine(WebHostEnvironment.ContentRootPath, "Agents"));
+                var files = Directory.GetFiles(folder,"*.txt");
+                return Ok(new AgentResponse(files.Select(x=> Path.GetFileNameWithoutExtension(x)).ToArray()));
+            }
+            catch (Exception ex)
+            {
+                return Problem("Could not get agent. " + ex.Message);
+            }
+        }
+
+        [HttpGet("{agent}")]
         public IActionResult GetAgent(string agent)
         {
             try

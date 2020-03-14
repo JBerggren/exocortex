@@ -4,7 +4,6 @@ using Google.Cloud.Firestore;
 
 namespace ExoCortex.Web.Models
 {
-
     [FirestoreData]
     public class InputItem
     {
@@ -33,5 +32,4 @@ namespace ExoCortex.Web.Models
         [FirestoreProperty]
         public List<string> HandledBy { get; set; }
     }
-
 }
