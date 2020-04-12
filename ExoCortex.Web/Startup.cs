@@ -1,4 +1,6 @@
+using ExoCortex.Web.Framework;
 using ExoCortex.Web.Framework.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,8 +9,16 @@ using Microsoft.Extensions.Hosting;
 
 namespace ExoCortex.Web
 {
+    public enum StorageSolution
+    {
+        FireStore,
+        MongoDB
+    }
     public class Startup
     {
+        //Remade to MongoDB but kept FireStore as a solution
+        StorageSolution Storage = StorageSolution.MongoDB;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -19,8 +29,17 @@ namespace ExoCortex.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFirestoreFactory, FirestoreFactory>();
-            services.AddSingleton<IInputStorage, InputStorage>();
+            if(Storage == StorageSolution.FireStore)
+            {
+                services.AddSingleton<IFirestoreFactory, FirestoreFactory>();
+                services.AddSingleton<IInputStorage, FirestoreInputStorage>();
+            }
+            else if(Storage == StorageSolution.MongoDB)
+            {
+                services.AddSingleton<IInputStorage, MongoDBInputStorage>();
+            }
+
+           
             services.AddControllers();
             services.AddSpaStaticFiles(configuration =>
            {
@@ -43,7 +62,14 @@ namespace ExoCortex.Web
             app.UseSpaStaticFiles();
             app.UseRouting();
 
-            app.UseAuthorization();
+            //TODO: Insert simple authentication by
+            /*
+              app.Use(async (context, next) =>
+        {
+            // Do work that doesn't write to the Response.
+            await next.Invoke();
+            // Do logging or other work that doesn't write to the Response.
+        });*/
 
             app.UseEndpoints(endpoints =>
             {

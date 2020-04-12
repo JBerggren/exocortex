@@ -6,22 +6,16 @@ using Google.Cloud.Firestore;
 
 namespace ExoCortex.Web.Framework.Services
 {
-    public interface IInputStorage
-    {
-        Task<string> Save(InputItem item);
-        Task<int> Count();
-        Task<InputQueryResult> GetLatest(string type,int limit);
-    }
 
-    public class InputStorage : IInputStorage
+    public class FirestoreInputStorage : IInputStorage
     {
         private IFirestoreFactory Db;
-        public InputStorage(IFirestoreFactory factory)
+        public FirestoreInputStorage(IFirestoreFactory factory)
         {
             Db = factory;
         }
 
-        public async Task<int> Count()
+        public async Task<long> Count()
         {
             var collection = await GetCollection();
             return (await collection.GetSnapshotAsync()).Count;

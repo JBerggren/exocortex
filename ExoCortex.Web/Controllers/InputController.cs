@@ -6,6 +6,7 @@ using ExoCortex.Web.Models;
 using ExoCortex.Web.Framework.Services;
 using Microsoft.AspNetCore.Mvc;
 using ExoCortex.Web.Models.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExoCortex.Web.Controllers
 {
@@ -20,7 +21,7 @@ namespace ExoCortex.Web.Controllers
         public IInputStorage InputManager { get; }
 
         [HttpGet("count")]
-        public async Task<int> Count(){
+        public async Task<long> Count(){
             return await InputManager.Count();
         }
 

@@ -20,12 +20,13 @@
     "ExoCortex.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "input",
       "applicationUrl": "https://0.0.0.0:5001;http://0.0.0.0:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "GOOGLE_APPLICATION_CREDENTIALS":"Exocortex-2f37712dc639.json",
-        "FIRESTORE_GOOGLE_PROJECT":"exocortex-271008"
+        "FIRESTORE_GOOGLE_PROJECT": "exocortex-271008",
+        "APIKey": "test"
       }
     }
   }

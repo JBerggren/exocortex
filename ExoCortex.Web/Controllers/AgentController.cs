@@ -5,6 +5,7 @@ using System.IO;
 using ExoCortex.Web.Models.Request;
 using ExoCortex.Web.Models.Response;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExoCortex.Web.Controllers
 {

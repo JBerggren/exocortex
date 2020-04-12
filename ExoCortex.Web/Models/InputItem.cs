@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Google.Cloud.Firestore;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ExoCortex.Web.Models
 {
@@ -18,6 +19,8 @@ namespace ExoCortex.Web.Models
         }
 
         [FirestoreDocumentId]
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
 
         [FirestoreProperty]

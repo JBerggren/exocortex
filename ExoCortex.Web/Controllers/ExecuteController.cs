@@ -6,6 +6,7 @@ using System.IO;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using System.Threading.Tasks;
 using ExoCortex.Web.Agents.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ExoCortex.Web.Controllers
 {
